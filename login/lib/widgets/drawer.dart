@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:login/pages/login_page.dart';
 import 'package:login/utils/routes.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -11,7 +12,7 @@ class MyDrawer extends StatelessWidget {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG7WjONaOfilXR3bebrfe_zcjl58ZdAzJHYw&usqp=CAU";
     return Drawer(
       child: Container(
-        color: Colors.green[400],
+        color: Colors.blueGrey[700],
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -22,12 +23,12 @@ class MyDrawer extends StatelessWidget {
                 currentAccountPictureSize: const Size(60, 60),
                 margin: EdgeInsets.zero,
                 decoration: BoxDecoration(
-                  color: Colors.green[400],
+                  color: Colors.blueGrey[700],
                 ),
-                accountName: const Text("QASIM"),
-                accountEmail: const Text("qasim@gmail.com"),
+                accountName: Text(LoginPage.name),
+                accountEmail: Text(LoginPage.email),
                 currentAccountPicture: const CircleAvatar(
-                  backgroundImage: NetworkImage(imageUrl),
+                  backgroundImage: AssetImage("assets/images/profile.jpg"),
                 ),
               ),
             ),
@@ -65,12 +66,15 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            const ListTile(
-              leading: Icon(
+            ListTile(
+              onTap: () {
+                print("EMAIL ME CLICKED");
+              },
+              leading: const Icon(
                 Icons.mail,
                 color: Colors.white,
               ),
-              title: Text(
+              title: const Text(
                 "E M A I L  M E",
                 style: TextStyle(
                   color: Colors.white,

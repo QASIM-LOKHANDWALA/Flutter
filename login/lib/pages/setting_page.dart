@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../widgets/themes.dart';
 
 class settingsPage extends StatelessWidget {
   const settingsPage({super.key});
@@ -8,11 +8,7 @@ class settingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("SETTING"),
-          backgroundColor: Colors.green[400],
-          foregroundColor: Colors.black,
-        ),
+        appBar: MyTheme.defaultAppBar("SETTINGS"),
       ),
     );
   }

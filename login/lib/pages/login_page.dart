@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:login/utils/routes.dart';
+import 'package:email_validator/email_validator.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  static String email = "";
+  static String name = "";
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -10,7 +14,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  String name = "";
+
   bool changeButton = false;
 
   final _formKey = GlobalKey<FormState>();
@@ -43,10 +47,10 @@ class _LoginPageState extends State<LoginPage> {
                 height: 15,
               ),
               Text(
-                "Welcome $name",
+                "Welcome ${LoginPage.name}",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 28,
+                  fontSize: 22,
                 ),
               ),
               const SizedBox(
@@ -70,10 +74,24 @@ class _LoginPageState extends State<LoginPage> {
                           return null;
                         },
                         onChanged: (value){
-                          name = value;
+                          LoginPage.name = value;
                           setState(() {
 
                           });
+                        },
+                      ),
+
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: "Enter E-mail",
+                          labelText: "e-mail",
+                        ),
+                        validator: (value){
+                          if(!EmailValidator.validate(value!)){
+                            return "Invalid Email";
+                          }
+                          LoginPage.email = value;
+                          return null;
                         },
                       ),
 
@@ -92,11 +110,13 @@ class _LoginPageState extends State<LoginPage> {
                           return null;
                         },
                       ),
+
+
                       const SizedBox(
                         height: 15,
                       ),
                       Material(
-                        color: Colors.green,
+                        color: const Color(0xFF33505a),
                         borderRadius: BorderRadius.circular(changeButton?50:10),
                         child: InkWell(
                           onTap: () => moveToHome(context),
