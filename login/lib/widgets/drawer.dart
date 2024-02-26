@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login/pages/login_page.dart';
 import 'package:login/utils/routes.dart';
+import 'package:login/widgets/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -12,7 +14,7 @@ class MyDrawer extends StatelessWidget {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG7WjONaOfilXR3bebrfe_zcjl58ZdAzJHYw&usqp=CAU";
     return Drawer(
       child: Container(
-        color: Colors.blueGrey[700],
+        color: context.cardColor,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -23,7 +25,7 @@ class MyDrawer extends StatelessWidget {
                 currentAccountPictureSize: const Size(60, 60),
                 margin: EdgeInsets.zero,
                 decoration: BoxDecoration(
-                  color: Colors.blueGrey[700],
+                  color: context.cardColor,
                 ),
                 accountName: Text(LoginPage.name),
                 accountEmail: Text(LoginPage.email),

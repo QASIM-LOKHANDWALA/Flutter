@@ -14,7 +14,8 @@
             "desc": "Google Pixel phone 5th generation",
             "price": 699,
             "color": "#00ac51",
-            "image": "assets/images/pixel5.png"
+            "image": "assets/images/pixel5.png",
+            "specs": ""
         },
         {
             "id": 3,

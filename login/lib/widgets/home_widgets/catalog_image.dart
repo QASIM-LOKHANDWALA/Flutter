@@ -8,22 +8,8 @@ class CatalogImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Container(
-        width: context.percentWidth * 25,
-        height: context.percentWidth * 25,
-        decoration: BoxDecoration(
-          color: Colors.blueGrey[100],
-          borderRadius: BorderRadius.circular(14),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset(
-            image,
-          ),
-        ),
-      ),
-    );
+    return Image.asset(
+      image,
+    ).box.rounded.p8.color(context.canvasColor).make().p16().wh32(context);
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:login/pages/login_page.dart';
 import 'package:login/utils/routes.dart';
 import 'package:login/widgets/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -11,7 +12,11 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
-        appBar: MyTheme.defaultAppBar("PROFILE"),
+        backgroundColor: context.canvasColor,
+        appBar: AppBar(
+          backgroundColor: context.canvasColor,
+          title: "PROFILE".text.bold.xl3.color(context.theme.focusColor).make(),
+        ),
         body: Column(
           children: [
             const SizedBox(

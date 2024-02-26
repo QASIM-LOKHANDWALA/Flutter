@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:login/pages/home_page.dart';
 import 'package:login/utils/routes.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,20 +15,22 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
-
   bool changeButton = false;
 
   final _formKey = GlobalKey<FormState>();
 
   moveToHome(BuildContext context) async {
-    if(_formKey.currentState!.validate()){
+    if (_formKey.currentState!.validate()) {
       setState(() {
         changeButton = true;
       });
       await Future.delayed(const Duration(seconds: 1));
-      Navigator.pop(context);
-      await Navigator.pushNamed(context, MyRoutes.homeRoute);
+      await Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+          (route) => false);
+      // Navigator.pop(context);
+      // await Navigator.pushNamed(context, MyRoutes.homeRoute);
       setState(() {
         changeButton = false;
       });
@@ -37,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Material(
-        color: Colors.white,
+        color: context.canvasColor,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -58,7 +62,8 @@ class _LoginPageState extends State<LoginPage> {
                 height: 15,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16,horizontal: 32),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -68,77 +73,72 @@ class _LoginPageState extends State<LoginPage> {
                           hintText: "Enter username",
                           labelText: "Username",
                         ),
-                        validator: (value){
-                          if(value!.isEmpty){
+                        validator: (value) {
+                          if (value!.isEmpty) {
                             return "Username can't be empty";
                           }
                           return null;
                         },
-                        onChanged: (value){
+                        onChanged: (value) {
                           LoginPage.name = value;
-                          setState(() {
-
-                          });
+                          setState(() {});
                         },
                       ),
-
                       TextFormField(
                         decoration: const InputDecoration(
                           hintText: "Enter E-mail",
                           labelText: "e-mail",
                         ),
-                        validator: (value){
-                          if(!EmailValidator.validate(value!)){
+                        validator: (value) {
+                          if (!EmailValidator.validate(value!)) {
                             return "Invalid Email";
                           }
                           LoginPage.email = value;
                           return null;
                         },
                       ),
-
                       TextFormField(
                         obscureText: true,
                         decoration: const InputDecoration(
                           hintText: "Enter password",
                           labelText: "password",
                         ),
-                        validator: (value){
-                          if(value!.isEmpty){
+                        validator: (value) {
+                          if (value!.isEmpty) {
                             return "Password can't be empty";
-                          }else if(value.length < 6){
+                          } else if (value.length < 6) {
                             return "Password should be at least 6 character long";
                           }
                           return null;
                         },
                       ),
-
-
                       const SizedBox(
                         height: 15,
                       ),
                       Material(
-                        color: const Color(0xFF33505a),
-                        borderRadius: BorderRadius.circular(changeButton?50:10),
+                        color: context.theme.hintColor,
+                        borderRadius:
+                            BorderRadius.circular(changeButton ? 50 : 10),
                         child: InkWell(
                           onTap: () => moveToHome(context),
                           child: AnimatedContainer(
                             duration: const Duration(seconds: 1),
-                            width: changeButton?50:150,
+                            width: changeButton ? 50 : 150,
                             height: 50,
                             alignment: Alignment.center,
                             child: changeButton
-                              ? const Icon(
-                              Icons.done,
-                              color: Colors.white,
-                            )
-                              : const Text(
-                              "Login",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
+                                ? const Icon(
+                                    Icons.done,
+                                    color: Colors.white,
+                                  )
+                                : const Text(
+                                    "Login",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
                           ),
                         ),
                       ),

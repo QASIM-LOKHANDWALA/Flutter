@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MyTheme {
   static const primaryColor = '0xFF33505a';
@@ -20,7 +21,9 @@ class MyTheme {
   }
 
   static ThemeData lightTheme(BuildContext context) => ThemeData(
-        primarySwatch: Colors.green,
+        primaryColor: lightBlueish,
+        focusColor: darkBlue,
+        hintColor: darkBlue,
         fontFamily: GoogleFonts.poppins().fontFamily,
         appBarTheme: const AppBarTheme(
           color: Colors.white,
@@ -28,11 +31,34 @@ class MyTheme {
           elevation: 0.0,
           iconTheme: IconThemeData(color: Colors.black),
         ),
+        canvasColor: creamColor,
+        cardColor: Colors.white,
+        buttonTheme: ButtonThemeData(
+          buttonColor: lightBlueish,
+        )
       );
   static ThemeData darkTheme(BuildContext context) => ThemeData(
-        brightness: Brightness.dark,
-      );
+    brightness: Brightness.dark,
+    primaryColorDark: creamColor,
+    primaryColor: lightBlueish,
+    hintColor: lightBlueish,
+    focusColor: creamColor,
+    canvasColor: darkColor,
+    cardColor: Colors.black,
+    fontFamily: GoogleFonts.poppins().fontFamily,
+    appBarTheme: const AppBarTheme(
+      color: Colors.black,
+      elevation: 0.0,
+      iconTheme: IconThemeData(color: Colors.white),
+      foregroundColor: Color(0xfff5f5f5),
+    ),
+    buttonTheme: ButtonThemeData(
+      buttonColor: darkBlue,
+    )
+  );
 
   static Color creamColor = Color(0xfff5f5f5);
+  static Color darkColor = Vx.gray900;
   static Color darkBlue = Color(0xff403b58);
+  static Color lightBlueish = Vx.indigo500;
 }

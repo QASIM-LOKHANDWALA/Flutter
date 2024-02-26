@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:login/pages/home_detail_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../models/catalog.dart';
+import '../../pages/buy_page.dart';
 import '../themes.dart';
 import 'catalog_image.dart';
 
@@ -49,7 +50,7 @@ class CatalogItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              catalog.name.text.lg.color(MyTheme.darkBlue).bold.make(),
+              catalog.name.text.lg.color(context.theme.focusColor).bold.make(),
               catalog.desc.text.textStyle(context.captionStyle).make(),
               6.heightBox,
               ButtonBar(
@@ -60,13 +61,13 @@ class CatalogItem extends StatelessWidget {
                   ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(MyTheme.darkBlue),
+                          MaterialStateProperty.all(context.theme.hintColor),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+
+                    },
                     child:
-                        "Buy".text.color(MyTheme.creamColor).make().onTap(() {
-                      print("BUY CLICKED");
-                    }),
+                        "Add To Cart".text.sm.color(MyTheme.creamColor).make(),
                   ),
                 ],
               ).pOnly(right: 8.0),
@@ -74,6 +75,6 @@ class CatalogItem extends StatelessWidget {
           ),
         ),
       ],
-    )).white.roundedLg.square(130).make().py16();
+    )).color(context.cardColor).roundedLg.square(130).make().py16();
   }
 }
