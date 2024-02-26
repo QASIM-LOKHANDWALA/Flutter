@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login/pages/login_page.dart';
 import 'package:login/utils/routes.dart';
-import 'package:login/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class ProfilePage extends StatelessWidget {
