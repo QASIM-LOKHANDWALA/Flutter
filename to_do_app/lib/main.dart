@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:to_do_app/pages/home_page.dart';
 
-void main() {
+void main() async {
+  // Initialize Hive
+  await Hive.initFlutter();
+  // Open A Box
+  var box = await Hive.openBox('myBox');
   runApp(const MyApp());
 }
 
@@ -12,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.system,
       home: HomePage(),
     );
   }
