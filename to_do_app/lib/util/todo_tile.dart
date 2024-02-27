@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class ToDoTile extends StatelessWidget {
   ToDoTile({
@@ -34,7 +35,7 @@ class ToDoTile extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: Colors.teal[400],
+            color: context.theme.colorScheme.secondary,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
@@ -43,7 +44,8 @@ class ToDoTile extends StatelessWidget {
               Checkbox(
                 value: taskCompleted,
                 onChanged: onChanged,
-                activeColor: Colors.black,
+                checkColor: context.theme.colorScheme.surface,
+                activeColor: context.theme.colorScheme.onSurface,
               ),
               // Task Name
               Text(

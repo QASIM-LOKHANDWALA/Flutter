@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MyButton extends StatelessWidget {
   MyButton({super.key, required this.text, required this.onPressed});
@@ -10,8 +11,8 @@ class MyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: onPressed,
-      color: Colors.teal[900],
-      child: Text(text,style: TextStyle(color: Colors.white),),
+      color: context.primaryColor,
+      child: Text(text,style: TextStyle(color: context.theme.colorScheme.onPrimary),),
     );
   }
 }

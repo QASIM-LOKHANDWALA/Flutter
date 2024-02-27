@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:to_do_app/pages/home_page.dart';
+import 'package:to_do_app/util/themes.dart';
 
 void main() async {
   // Initialize Hive
@@ -15,9 +16,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
+      theme: MyTheme.lightTheme(),
+      darkTheme: MyTheme.darkTheme(),
       home: HomePage(),
     );
   }

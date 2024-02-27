@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/util/my_button.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class DialogBox extends StatelessWidget {
   final TextEditingController myController;
@@ -17,7 +18,7 @@ class DialogBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Colors.teal[300],
+      backgroundColor: context.backgroundColor,
       content: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
@@ -29,9 +30,15 @@ class DialogBox extends StatelessWidget {
             // To Take User Input
             TextField(
               controller: myController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Enter your task",
+                focusColor: context.theme.colorScheme.onSurface,
+                hoverColor: context.theme.colorScheme.onSurface,
+                hintStyle: TextStyle(
+                  color: context.theme.colorScheme.onSurface,
+                  fontWeight: FontWeight.w400
+                )
               ),
             ),
             // Save & Cancel Buttons

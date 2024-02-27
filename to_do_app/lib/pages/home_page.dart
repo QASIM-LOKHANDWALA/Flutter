@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:to_do_app/data/database.dart';
 import 'package:to_do_app/util/dialog_box.dart';
+import 'package:to_do_app/util/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
 import '../util/todo_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -76,13 +78,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal[200],
+      backgroundColor: context.backgroundColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           createNewTask();
         },
-        backgroundColor: Colors.teal[900],
-        foregroundColor: Colors.white,
+        backgroundColor: context.theme.colorScheme.primary,
+        foregroundColor: context.theme.colorScheme.onPrimary,
         child: Icon(
           Icons.add,
         ),
@@ -98,8 +100,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         elevation: 1,
-        foregroundColor: Colors.white,
-        backgroundColor: Colors.teal[900],
+        foregroundColor: context.theme.colorScheme.onPrimary,
+        backgroundColor: context.theme.colorScheme.primary,
       ),
       body: ListView.builder(
         itemCount: db.toDoList.length,
