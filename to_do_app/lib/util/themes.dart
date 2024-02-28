@@ -21,7 +21,7 @@ class MyTheme {
   static ThemeData darkTheme() => ThemeData(
         primaryColor: Colors.black,
         colorScheme: ColorScheme(
-          brightness: Brightness.light,
+          brightness: Brightness.dark,
           primary: Colors.black,
           onPrimary: Colors.white,
           secondary: Colors.black45,

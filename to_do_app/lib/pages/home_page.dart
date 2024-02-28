@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
 import 'package:to_do_app/data/database.dart';
 import 'package:to_do_app/util/dialog_box.dart';
+import 'package:to_do_app/util/theme_provider.dart';
 import 'package:to_do_app/util/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../util/todo_tile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  static Icon themeIcon = Icon(Icons.nightlight);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -17,17 +21,17 @@ class _HomePageState extends State<HomePage> {
   // Making Database class object
   ToDoDatabase db = ToDoDatabase();
 
-  void initState(){
+  void initState() {
     super.initState();
     // If this is the first time ever opening the app, then create the default data
-    if(_myBox.get("TODOLIST")==null){
+    if (_myBox.get("TODOLIST") == null) {
       db.createInitialData();
-    }else{
+    } else {
       // There exists a data
       db.loadData();
     }
-
   }
+
   // Reference Hive Box
   final _myBox = Hive.box('myBox');
   // Text Controller
@@ -45,17 +49,19 @@ class _HomePageState extends State<HomePage> {
     });
     db.updateDataBase();
   }
+
   // Save New Task
-  void saveNewTask(){
+  void saveNewTask() {
     setState(() {
-      db.toDoList.add([_controller.text,false]);
+      db.toDoList.add([_controller.text, false]);
       _controller.clear();
     });
     db.updateDataBase();
     Navigator.of(context).pop();
   }
+
   // Create New Task
-  void createNewTask(){
+  void createNewTask() {
     showDialog(
       context: context,
       builder: (context) {
@@ -67,8 +73,9 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
   // Delete Task
-  void deleteTask(int index){
+  void deleteTask(int index) {
     setState(() {
       db.toDoList.removeAt(index);
     });
@@ -90,14 +97,23 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            "TO DO",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              "To Do",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
             ),
-          ),
+            GestureDetector(
+              onTap: (){
+                Provider.of<ThemeProvider>(context,listen: false).toggleTheme();
+              },
+              child: HomePage.themeIcon,
+            ),
+          ],
         ),
         elevation: 1,
         foregroundColor: context.theme.colorScheme.onPrimary,
