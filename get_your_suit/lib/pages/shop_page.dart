@@ -25,16 +25,18 @@ class _ShopPageState extends State<ShopPage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              title: Text(
+              title: const Text(
                 "ADDED SUCCESSFULLY!",
                 style: TextStyle(color: Colors.white),
               ),
-              content: Text(
+              content: const Text(
                 "Check Your cart",
                 style: TextStyle(color: Colors.white),
               ),
             ));
   }
+
+  final myController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,22 +44,31 @@ class _ShopPageState extends State<ShopPage> {
       builder: (context, value, child) => Column(
         children: [
           // Search bar
-          Container(
-            padding: const EdgeInsets.all(12),
-            margin: const EdgeInsets.symmetric(horizontal: 25),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Colors.white,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                "Search".text.color(Colors.grey.shade600).make(),
-                Icon(
-                  Icons.search,
-                  color: Colors.grey.shade600,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 6),
+            child: TextFormField(
+              cursorColor: Colors.black,
+              controller: myController,
+              decoration: InputDecoration(
+                hintText: "Search",
+                hintStyle: TextStyle(
+                  color: Colors.grey.shade700,
                 ),
-              ],
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.grey.shade700,
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                  )
+                ),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.white,
+                  )
+                ),
+              ),
             ),
           ),
 

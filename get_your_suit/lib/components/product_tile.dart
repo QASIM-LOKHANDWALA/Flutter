@@ -21,7 +21,8 @@ class ProductTile extends StatelessWidget {
         children: [
           // Picture
           ClipRRect(
-            borderRadius: BorderRadius.circular(12),
+            clipBehavior: Clip.antiAlias,
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
             child: Padding(
               padding: const EdgeInsets.only(top: 25.0),
               child: Image.asset(

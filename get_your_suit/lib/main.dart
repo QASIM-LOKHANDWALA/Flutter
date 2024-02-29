@@ -3,6 +3,7 @@ import 'package:get_your_suit/MyRoutes.dart';
 import 'package:get_your_suit/models/cart.dart';
 import 'package:get_your_suit/pages/home_page.dart';
 import 'package:get_your_suit/pages/intro_page.dart';
+import 'package:get_your_suit/pages/login_page.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       builder: (context,child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         home: const IntroPage(),
+        //home: LoginPage(),
         initialRoute: MyRoutes.entryRoute,
         routes: {
           MyRoutes.homeRoute : (context) => const HomePage(),
