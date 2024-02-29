@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       appBar: AppBar(
-        title: "WELCOME".text.xl4.bold.color(context.theme.focusColor).make(),
+        //title: "WELCOME".text.xl4.bold.color(context.theme.focusColor).make(),
         forceMaterialTransparency: true,
       ),
       body: SafeArea(

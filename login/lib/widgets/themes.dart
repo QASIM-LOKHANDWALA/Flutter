@@ -26,7 +26,7 @@ class MyTheme {
         hintColor: darkBlue,
         fontFamily: GoogleFonts.poppins().fontFamily,
         appBarTheme: const AppBarTheme(
-          color: Colors.white,
+          backgroundColor: Colors.white,
           foregroundColor: Colors.black,
           elevation: 0.0,
           iconTheme: IconThemeData(color: Colors.black),
@@ -39,7 +39,6 @@ class MyTheme {
       );
   static ThemeData darkTheme(BuildContext context) => ThemeData(
     brightness: Brightness.dark,
-    primaryColorDark: creamColor,
     primaryColor: lightBlueish,
     hintColor: lightBlueish,
     focusColor: creamColor,
@@ -47,7 +46,7 @@ class MyTheme {
     cardColor: Colors.black,
     fontFamily: GoogleFonts.poppins().fontFamily,
     appBarTheme: const AppBarTheme(
-      color: Colors.black,
+      backgroundColor: Colors.black,
       elevation: 0.0,
       iconTheme: IconThemeData(color: Colors.white),
       foregroundColor: Color(0xfff5f5f5),
