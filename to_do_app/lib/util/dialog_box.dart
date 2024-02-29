@@ -30,8 +30,18 @@ class DialogBox extends StatelessWidget {
             // To Take User Input
             TextField(
               controller: myController,
+              cursorColor: context.theme.colorScheme.onSurface,
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.black
+                  )
+                ),
+                enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.white
+                    )
+                ),
                 hintText: "Enter your task",
                 focusColor: context.theme.colorScheme.onSurface,
                 hoverColor: context.theme.colorScheme.onSurface,

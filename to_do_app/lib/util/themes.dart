@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 
 class MyTheme {
   static ThemeData lightTheme() => ThemeData(
-        primaryColor: Colors.teal.shade900,
+        primaryColor: Colors.cyan.shade700,
         colorScheme: ColorScheme(
           brightness: Brightness.light,
-          primary: Colors.teal.shade900,
+          primary: Colors.cyan.shade700,
           onPrimary: Colors.white,
-          secondary: Colors.teal.shade500,
-          onSecondary: Colors.teal.shade500,
+          secondary: Colors.cyan.shade300,
+          onSecondary: Colors.cyan.shade500,
           onError: Colors.black,
-          background: Colors.teal.shade300,
-          onBackground: Colors.teal.shade300,
+          background: Colors.cyan.shade100,
+          onBackground: Colors.cyan.shade300,
           surface: Colors.white,
           onSurface: Colors.black,
           error: Colors.red.shade300,
         ),
-        backgroundColor: Colors.teal.shade300,
+        backgroundColor: Colors.cyan.shade100,
       );
   static ThemeData darkTheme() => ThemeData(
         primaryColor: Colors.black,

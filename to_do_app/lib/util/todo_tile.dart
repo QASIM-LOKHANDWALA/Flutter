@@ -48,14 +48,19 @@ class ToDoTile extends StatelessWidget {
                 activeColor: context.theme.colorScheme.onSurface,
               ),
               // Task Name
-              Text(
-                taskName,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                  decoration: taskCompleted
-                      ? (TextDecoration.lineThrough)
-                      : (TextDecoration.none),
+              Expanded(
+                child: Text(
+                  taskName,
+                  maxLines: 1,
+                  softWrap: true,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                    decoration: taskCompleted
+                        ? (TextDecoration.lineThrough)
+                        : (TextDecoration.none),
+                  ),
                 ),
               ),
             ],

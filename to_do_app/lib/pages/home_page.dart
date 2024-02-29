@@ -4,14 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:to_do_app/data/database.dart';
 import 'package:to_do_app/util/dialog_box.dart';
 import 'package:to_do_app/util/theme_provider.dart';
-import 'package:to_do_app/util/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../util/todo_tile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  static Icon themeIcon = Icon(Icons.nightlight);
+  static Icon themeIcon = const Icon(Icons.nightlight);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -21,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   // Making Database class object
   ToDoDatabase db = ToDoDatabase();
 
+  @override
   void initState() {
     super.initState();
     // If this is the first time ever opening the app, then create the default data
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
         },
         backgroundColor: context.theme.colorScheme.primary,
         foregroundColor: context.theme.colorScheme.onPrimary,
-        child: Icon(
+        child: const Icon(
           Icons.add,
         ),
       ),
