@@ -82,21 +82,23 @@ class _HomePageState extends State<HomePage> {
     db.updateDataBase();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.backgroundColor,
+      backgroundColor: context.canvasColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           createNewTask();
         },
-        backgroundColor: context.theme.colorScheme.primary,
+        backgroundColor: context.theme.colorScheme.background,
         foregroundColor: context.theme.colorScheme.onPrimary,
         child: const Icon(
           Icons.add,
         ),
       ),
       appBar: AppBar(
+        toolbarHeight: 80,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -110,14 +112,14 @@ class _HomePageState extends State<HomePage> {
             GestureDetector(
               onTap: (){
                 Provider.of<ThemeProvider>(context,listen: false).toggleTheme();
+
               },
               child: HomePage.themeIcon,
             ),
           ],
         ),
-        elevation: 1,
         foregroundColor: context.theme.colorScheme.onPrimary,
-        backgroundColor: context.theme.colorScheme.primary,
+        backgroundColor: context.theme.primaryColor,
       ),
       body: ListView.builder(
         itemCount: db.toDoList.length,

@@ -50,23 +50,27 @@ class _ShopPageState extends State<ShopPage> {
               cursorColor: Colors.black,
               controller: myController,
               decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.grey[200],
                 hintText: "Search",
                 hintStyle: TextStyle(
                   color: Colors.grey.shade700,
                 ),
-                icon: Icon(
+                suffixIcon: Icon(
                   Icons.search,
                   color: Colors.grey.shade700,
                 ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(
                     color: Colors.black,
-                  )
+                  ),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(
                     color: Colors.white,
-                  )
+                  ),
+                  borderRadius: BorderRadius.circular(12),
                 ),
               ),
             ),

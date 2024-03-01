@@ -1,16 +1,104 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_your_suit/logincomponents/my_button.dart';
 import 'package:get_your_suit/logincomponents/my_textfield.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   // text editing controllers
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
 
   // User Sign In Method
-  void signUserIn() {}
+  void signUserIn() async {
+    // Loading circle
+    showDialog(context: context, builder: (context) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    });
+
+    // Signing in with email & password
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+      // Close the Loading circle
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      // Close the Loading circle
+      Navigator.pop(context);
+
+      if (e.code == 'user-not-found') {
+        wrongEmailMessage();
+      } else if (e.code == 'wrong-password') {
+        wrongPasswordMessage();
+      } else {
+        // General error message
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              backgroundColor: Colors.black,
+              title: Text("Error",style: TextStyle(color: Colors.white),),
+              content: Text("An error occurred: ${e.message}",style: TextStyle(color: Colors.white),),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text("OK"),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
+  }
+
+  void wrongEmailMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.black,
+          title: Text("Error",style: TextStyle(color: Colors.white),),
+          content: Text("Invalid email address. Please try again.",style: TextStyle(color: Colors.white),),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void wrongPasswordMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.black,
+          title: Text("Error",style: TextStyle(color: Colors.white),),
+          content: Text("Incorrect password. Please try again.",style: TextStyle(color: Colors.white),),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +137,7 @@ class LoginPage extends StatelessWidget {
 
                 // Username TextField
                 MyTextField(
-                  controller: usernameController,
+                  controller: emailController,
                   hintText: "Username",
                   obsecureText: false,
                 ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "284528746072",
+    "project_id": "getyoursuit",
+    "storage_bucket": "getyoursuit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284528746072:android:e0f0364a3fd103a765f42d",
+        "android_client_info": {
+          "package_name": "com.example.get_your_suit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtcjdHoZGXO_O8i6WLMH9T5p1cAWutxyw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //themeMode: ThemeMode.system,
       theme: Provider.of<ThemeProvider>(context).themeData,
       home: HomePage(),
     );

@@ -18,4 +18,11 @@ class ThemeProvider with ChangeNotifier{
       HomePage.themeIcon = Icon(Icons.nightlight);
     }
   }
+  ThemeData getTheme(){
+    if(_themeData == MyTheme.lightTheme()){
+      return MyTheme.darkTheme();
+    }else{
+      return MyTheme.lightTheme();
+    }
+  }
 }

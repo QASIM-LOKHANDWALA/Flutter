@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_your_suit/components/bottom_nav_bar.dart';
 import 'package:get_your_suit/pages/shop_page.dart';
@@ -7,7 +8,9 @@ import '../components/my_drawer.dart';
 import 'cart_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -51,7 +54,7 @@ class _HomePageState extends State<HomePage> {
         onTabChange: (index) => navigateBottomBar(index),
       ),
       body: _pages[_selectedIndex],
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
     );
   }
 }

@@ -1,8 +1,26 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get_your_suit/MyRoutes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
+class MyDrawer extends StatefulWidget {
+  MyDrawer({super.key});
+
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
+  void signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      Navigator.pushNamedAndRemoveUntil(context, MyRoutes.loginRoute, (route) => false);
+      print('Successfully signed out');
+    } on FirebaseAuthException catch (e) {
+      print('Error signing out: ${e.code}');
+      // Handle specific errors if needed
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +69,23 @@ class MyDrawer extends StatelessWidget {
           ),
 
           Padding(
-            padding: const EdgeInsets.only(left: 25,bottom: 25),
-            child: ListTile(
-              leading: const Icon(
-                Icons.logout,
-                color: Colors.white,
+            padding: const EdgeInsets.all(25),
+            child: GestureDetector(
+              onTap: signOut,
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Icon(Icons.logout,color: Colors.black,),
+                    "L O G  O U T".text.color(Colors.black).make(),
+                  ],
+                ),
               ),
-              title: "L o g  O u t".text.color(Colors.white).make(),
             ),
           ),
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyB_2rv4JRJTH2InIv6XmIZB4YBO5yG4PCk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>284528746072</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.getYourSuit.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>getyoursuit</string>
+	<key>STORAGE_BUCKET</key>
+	<string>getyoursuit.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:284528746072:ios:1e41c337e85bcbb565f42d</string>
+</dict>
+</plist>
