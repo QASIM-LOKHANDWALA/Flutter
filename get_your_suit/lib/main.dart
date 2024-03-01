@@ -6,6 +6,7 @@ import 'package:get_your_suit/models/cart.dart';
 import 'package:get_your_suit/pages/auth_page.dart';
 import 'package:get_your_suit/pages/home_page.dart';
 import 'package:get_your_suit/pages/intro_page.dart';
+import 'package:get_your_suit/pages/login_or_register_page.dart';
 import 'package:get_your_suit/pages/login_page.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         routes: {
           MyRoutes.homeRoute : (context) => HomePage(),
           MyRoutes.entryRoute : (context) => const IntroPage(),
-          MyRoutes.loginRoute : (context) => LoginPage(),
+          MyRoutes.loginRoute : (context) => LoginOrRegisterPage(),
         },
       ),
     );

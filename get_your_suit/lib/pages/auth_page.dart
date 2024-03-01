@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_your_suit/pages/home_page.dart';
+import 'package:get_your_suit/pages/login_or_register_page.dart';
 
 import 'intro_page.dart';
 import 'login_page.dart';
@@ -17,7 +18,7 @@ class AuthPage extends StatelessWidget {
           if(snapshot.hasData){
             return IntroPage();
           }else{
-            return LoginPage();
+            return LoginOrRegisterPage();
           }
         },
       ),

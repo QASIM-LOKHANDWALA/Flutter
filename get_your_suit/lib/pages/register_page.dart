@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:get_your_suit/logincomponents/my_button.dart';
 import 'package:get_your_suit/logincomponents/my_textfield.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  LoginPage({super.key,required this.onTap});
+  RegisterPage({super.key,required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   // text editing controllers
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
-  // User Sign In Method
-  void signUserIn() async {
+  // User Sign Up Method
+  void signUserUp() async {
     // Loading circle
     showDialog(context: context, builder: (context) {
       return const Center(
@@ -26,27 +26,40 @@ class _LoginPageState extends State<LoginPage> {
       );
     });
 
-    // Signing in with email & password
+    // Signing Up New User
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
-      // Close the Loading circle
-      Navigator.pop(context);
+      if(passwordController.text == confirmPasswordController.text){
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text);
+      }else if(passwordController.text != confirmPasswordController.text){
+        // Close the Loading circle
+        Navigator.pop(context);
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              backgroundColor: Colors.black,
+              title: const Text("Error",style: TextStyle(color: Colors.white),),
+              content: const Text("Entered Passwords Does't Match!",style: TextStyle(color: Colors.white),),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text("OK"),
+                ),
+              ],
+            );
+          },
+        );
+      }
     } on FirebaseAuthException catch (e) {
       // Close the Loading circle
       Navigator.pop(context);
 
       if (e.code == 'user-not-found') {
-        // Close the Loading circle
-        Navigator.pop(context);
         wrongEmailMessage();
       } else if (e.code == 'wrong-password') {
-        // Close the Loading circle
-        Navigator.pop(context);
         wrongPasswordMessage();
       } else {
-        // Close the Loading circle
-        Navigator.pop(context);
         // General error message
         showDialog(
           context: context,
@@ -106,6 +119,25 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  void passwordDontMatch() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.black,
+          title: Text("Error",style: TextStyle(color: Colors.white),),
+          content: Text("Entered Passwords Does't Match!",style: TextStyle(color: Colors.white),),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -130,18 +162,6 @@ class _LoginPageState extends State<LoginPage> {
                   height: 50,
                 ),
 
-                // Welcome Text
-                Text(
-                  "Welcome you've been missed!",
-                  style: TextStyle(
-                    color: Colors.grey[700],
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-
                 // Username TextField
                 MyTextField(
                   controller: emailController,
@@ -162,27 +182,21 @@ class _LoginPageState extends State<LoginPage> {
                   height: 10,
                 ),
 
-                // Forgot Password
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Forgot Password?",
-                        style: TextStyle(color: Colors.grey[600]),
-                      ),
-                    ],
-                  ),
+                // Confirm Password TextField
+                MyTextField(
+                  controller: confirmPasswordController,
+                  hintText: "Confirm Password",
+                  obsecureText: true,
                 ),
                 const SizedBox(
                   height: 25,
                 ),
 
+
                 // Sign In Button
                 MyButton(
-                  onTap: signUserIn,
-                  text: "Sign In",
+                  onTap: signUserUp,
+                  text: "Sign Up",
                 ),
                 const SizedBox(
                   height: 50,
@@ -262,10 +276,10 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Not A Member?",style: TextStyle(color: Colors.grey[800]),),
+                    Text("Already Have An Account?",style: TextStyle(color: Colors.grey[800]),),
                     const SizedBox(width: 5,),
                     GestureDetector(
-                      child: const Text("Register Now",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),),
+                      child: const Text("Sign In Now",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),),
                       onTap: widget.onTap,
                     ),
                   ],

@@ -3,7 +3,6 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/pages/home_page.dart';
 import 'package:to_do_app/util/theme_provider.dart';
-import 'package:to_do_app/util/themes.dart';
 
 void main() async {
   // Initialize Hive
