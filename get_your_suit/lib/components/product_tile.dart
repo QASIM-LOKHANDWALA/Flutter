@@ -27,7 +27,7 @@ class ProductTile extends StatelessWidget {
               padding: const EdgeInsets.only(top: 25.0),
               child: Image.asset(
                 suit.image,
-                height: 240,
+                height: 200,
               ),
             ),
           ),

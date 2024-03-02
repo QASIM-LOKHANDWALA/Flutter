@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:the_apple_sign_in/the_apple_sign_in.dart';
 
 class AuthService {
   // Google Sign In
@@ -19,4 +20,5 @@ class AuthService {
     // Finally Sign In
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
+  
 }

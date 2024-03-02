@@ -141,9 +141,35 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  void appleSignIn(){
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.black,
+          title: Text(
+            "Note",
+            style: TextStyle(color: Colors.white),
+          ),
+          content: Text(
+            "Feature is still in development!",
+            style: TextStyle(color: Colors.white),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    const snackBar = SnackBar(content: Text("FEATURE YET IN DEVELOPMENT!"));
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
@@ -202,7 +228,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   text: "Sign Up",
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
 
                 // Other Sign In Options
@@ -246,11 +272,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     const SizedBox(
                       width: 18,
                     ),
-                    SquareTile(image: "lib/images/apple.png", onTap: () {},),
+                    SquareTile(image: "lib/images/apple.png",
+                      onTap: appleSignIn,
+                    ),
                   ],
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 35,
                 ),
 
                 // Registration Option

@@ -7,7 +7,7 @@ import 'package:get_your_suit/services/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
-  LoginPage({super.key,required this.onTap});
+  LoginPage({super.key, required this.onTap});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -22,11 +22,13 @@ class _LoginPageState extends State<LoginPage> {
   // User Sign In Method
   void signUserIn() async {
     // Loading circle
-    showDialog(context: context, builder: (context) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    });
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
 
     // Signing in with email & password
     try {
@@ -55,8 +57,14 @@ class _LoginPageState extends State<LoginPage> {
           builder: (context) {
             return AlertDialog(
               backgroundColor: Colors.black,
-              title: Text("Error",style: TextStyle(color: Colors.white),),
-              content: Text("An error occurred: ${e.message}",style: TextStyle(color: Colors.white),),
+              title: Text(
+                "Error",
+                style: TextStyle(color: Colors.white),
+              ),
+              content: Text(
+                "An error occurred: ${e.message}",
+                style: TextStyle(color: Colors.white),
+              ),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
@@ -70,14 +78,45 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  void appleSignIn(){
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.black,
+          title: Text(
+            "Note",
+            style: TextStyle(color: Colors.white),
+          ),
+          content: Text(
+            "Feature is still in development!",
+            style: TextStyle(color: Colors.white),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void wrongEmailMessage() {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           backgroundColor: Colors.black,
-          title: Text("Error",style: TextStyle(color: Colors.white),),
-          content: Text("Invalid email address. Please try again.",style: TextStyle(color: Colors.white),),
+          title: Text(
+            "Error",
+            style: TextStyle(color: Colors.white),
+          ),
+          content: Text(
+            "Invalid email address. Please try again.",
+            style: TextStyle(color: Colors.white),
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
@@ -95,8 +134,14 @@ class _LoginPageState extends State<LoginPage> {
       builder: (context) {
         return AlertDialog(
           backgroundColor: Colors.black,
-          title: Text("Error",style: TextStyle(color: Colors.white),),
-          content: Text("Incorrect password. Please try again.",style: TextStyle(color: Colors.white),),
+          title: Text(
+            "Error",
+            style: TextStyle(color: Colors.white),
+          ),
+          content: Text(
+            "Incorrect password. Please try again.",
+            style: TextStyle(color: Colors.white),
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
@@ -108,9 +153,11 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
+    const snackBar = SnackBar(
+      content: Text("FEATURE YET IN DEVELOPMENT!"),
+    );
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
@@ -122,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 // Logo
                 Padding(
-                  padding: const EdgeInsets.only(top:30.0),
+                  padding: const EdgeInsets.only(top: 30.0),
                   child: Image.asset(
                     "lib/images/logoNoBG.png",
                     height: 120,
@@ -187,7 +234,7 @@ class _LoginPageState extends State<LoginPage> {
                   text: "Sign In",
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
 
                 // Other Sign In Options
@@ -227,25 +274,40 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SquareTile(image: "lib/images/google.png", onTap: () => AuthService().signInWithGoogle(),),
+                    SquareTile(
+                      image: "lib/images/google.png",
+                      onTap: () => AuthService().signInWithGoogle(),
+                    ),
                     const SizedBox(
                       width: 18,
                     ),
-                    SquareTile(image: "lib/images/apple.png", onTap: () {  },),
+                    SquareTile(
+                      image: "lib/images/apple.png",
+                      onTap: appleSignIn,
+                    ),
                   ],
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 35,
                 ),
 
                 // Registration Option
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Not A Member?",style: TextStyle(color: Colors.grey[800]),),
-                    const SizedBox(width: 5,),
+                    Text(
+                      "Not A Member?",
+                      style: TextStyle(color: Colors.grey[800]),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     GestureDetector(
-                      child: const Text("Register Now",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),),
+                      child: const Text(
+                        "Register Now",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.blue),
+                      ),
                       onTap: widget.onTap,
                     ),
                   ],
