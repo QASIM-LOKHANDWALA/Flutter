@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_your_suit/logincomponents/my_button.dart';
 import 'package:get_your_suit/logincomponents/my_textfield.dart';
+import 'package:get_your_suit/logincomponents/square_tile.dart';
+import 'package:get_your_suit/services/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -225,33 +227,11 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      padding: EdgeInsets.all(25),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.grey[200],
-                      ),
-                      child: Image.asset(
-                        "lib/images/google.png",
-                        height: 42,
-                      ),
-                    ),
+                    SquareTile(image: "lib/images/google.png", onTap: () => AuthService().signInWithGoogle(),),
                     const SizedBox(
                       width: 18,
                     ),
-                    Container(
-                      padding: EdgeInsets.all(25),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.grey[200],
-                      ),
-                      child: Image.asset(
-                        "lib/images/apple.png",
-                        height: 42,
-                      ),
-                    ),
+                    SquareTile(image: "lib/images/apple.png", onTap: () {  },),
                   ],
                 ),
                 const SizedBox(

@@ -66,6 +66,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '284528746072',
     projectId: 'getyoursuit',
     storageBucket: 'getyoursuit.appspot.com',
+    iosClientId: '284528746072-qvb7gjehabek45rlsfr19o7ub9dfdjvr.apps.googleusercontent.com',
     iosBundleId: 'com.example.getYourSuit',
   );
 
@@ -75,6 +76,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '284528746072',
     projectId: 'getyoursuit',
     storageBucket: 'getyoursuit.appspot.com',
+    iosClientId: '284528746072-ajmaou8me552bm7u9n97b00d088kljk5.apps.googleusercontent.com',
     iosBundleId: 'com.example.getYourSuit.RunnerTests',
   );
 }

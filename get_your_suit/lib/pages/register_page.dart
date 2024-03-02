@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get_your_suit/logincomponents/my_button.dart';
 import 'package:get_your_suit/logincomponents/my_textfield.dart';
 
+import '../logincomponents/square_tile.dart';
+import '../services/auth_service.dart';
+
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
   RegisterPage({super.key,required this.onTap});
@@ -239,33 +242,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      padding: EdgeInsets.all(25),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.grey[200],
-                      ),
-                      child: Image.asset(
-                        "lib/images/google.png",
-                        height: 42,
-                      ),
-                    ),
+                    SquareTile(image: "lib/images/google.png", onTap: () => AuthService().signInWithGoogle(),),
                     const SizedBox(
                       width: 18,
                     ),
-                    Container(
-                      padding: EdgeInsets.all(25),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.grey[200],
-                      ),
-                      child: Image.asset(
-                        "lib/images/apple.png",
-                        height: 42,
-                      ),
-                    ),
+                    SquareTile(image: "lib/images/apple.png", onTap: () {},),
                   ],
                 ),
                 const SizedBox(
