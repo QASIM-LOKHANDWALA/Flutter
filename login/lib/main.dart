@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/core/store.dart';
 import 'package:login/pages/cart_page.dart';
 import 'package:login/pages/home_page.dart';
 import 'package:login/pages/login_page.dart';
@@ -6,9 +7,15 @@ import 'package:login/pages/profile_page.dart';
 import 'package:login/pages/setting_page.dart';
 import 'package:login/utils/routes.dart';
 import 'package:login/widgets/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 void main(){
-  runApp(const MyApp());
+  runApp(
+    VxState(
+      store: MyStore(),
+      child: const MyApp(),
+    )
+  );
 }
 class MyApp extends StatelessWidget{
   const MyApp({super.key});
