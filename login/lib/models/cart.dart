@@ -17,14 +17,7 @@ class CartModel{
   List<Item> get items => _itemIds.map((id) => _catalog.getById(id)).toList();
   // Get total price
   num get totalPrice => items.fold(0, (total, element) => total+element.price);
-  // Add items
-  void add(Item item){
-    _itemIds.add(item.id);
-  }
-  // Remove items
-  void remove(Item item){
-    _itemIds.remove(item.id);
-  }
+
 }
 
 class AddMutation extends VxMutation<MyStore> {
@@ -35,5 +28,13 @@ class AddMutation extends VxMutation<MyStore> {
     store?.cart._itemIds.add(item.id);
     throw UnimplementedError();
   }
-
+}
+class RemoveMutation extends VxMutation<MyStore> {
+  final Item item;
+  RemoveMutation(this.item);
+  @override
+  perform() {
+    store?.cart._itemIds.remove(item.id);
+    throw UnimplementedError();
+  }
 }
