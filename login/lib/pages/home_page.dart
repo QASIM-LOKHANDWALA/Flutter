@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:login/core/store.dart';
+import 'package:login/models/cart.dart';
 import 'package:login/utils/routes.dart';
 import 'package:login/widgets/drawer.dart';
 import 'dart:convert';
@@ -23,6 +25,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     loadData();
   }
+
   loadData() async {
     await Future.delayed(const Duration(seconds: 2));
     final catalogJson =
@@ -37,17 +40,29 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final _cart = (VxState.store as MyStore).cart;
     return Scaffold(
       backgroundColor: context.theme.canvasColor,
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.pushNamed(context, MyRoutes.cartRoute);
-        },
-        backgroundColor: context.theme.hintColor,
-        child: const Icon(
-          CupertinoIcons.cart,
-          color: Colors.white,
-        ),
+      floatingActionButton: VxBuilder(
+        mutations: const {AddMutation, RemoveMutation},
+        builder: (context, _, state) => FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, MyRoutes.cartRoute);
+          },
+          shape: const StadiumBorder(),
+          backgroundColor: context.theme.hintColor,
+          child: const Icon(
+            CupertinoIcons.cart,
+            color: Colors.white,
+          ),
+        ).badge(
+            color: Vx.amber400,
+            size: 20,
+            count: _cart.items.length,
+            textStyle: const TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            )),
       ),
       appBar: AppBar(
         //title: "WELCOME".text.xl4.bold.color(context.theme.focusColor).make(),
@@ -60,7 +75,7 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const CatalogHeader(),
-              if(CatalogModel.items.isNotEmpty)
+              if (CatalogModel.items.isNotEmpty)
                 const CatalogList().py16().expand()
               else
                 const CircularProgressIndicator().centered().expand(),
