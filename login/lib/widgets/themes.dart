@@ -21,10 +21,11 @@ class MyTheme {
   }
 
   static ThemeData lightTheme(BuildContext context) => ThemeData(
+        highlightColor: Colors.black,
         primaryColor: lightBlueish,
         focusColor: darkBlue,
         hintColor: darkBlue,
-        fontFamily: GoogleFonts.poppins().fontFamily,
+        //fontFamily: GoogleFonts.poppins().fontFamily,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
@@ -38,13 +39,14 @@ class MyTheme {
         )
       );
   static ThemeData darkTheme(BuildContext context) => ThemeData(
+    highlightColor: Colors.white,
     brightness: Brightness.dark,
     primaryColor: lightBlueish,
     hintColor: lightBlueish,
     focusColor: creamColor,
     canvasColor: darkColor,
     cardColor: Colors.black,
-    fontFamily: GoogleFonts.poppins().fontFamily,
+    //fontFamily: GoogleFonts.poppins().fontFamily,
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.black,
       elevation: 0.0,

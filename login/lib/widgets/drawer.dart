@@ -25,10 +25,10 @@ class MyDrawer extends StatelessWidget {
                 currentAccountPictureSize: const Size(60, 60),
                 margin: EdgeInsets.zero,
                 decoration: BoxDecoration(
-                  color: context.cardColor,
+                  color: context.theme.focusColor,
                 ),
-                accountName: Text(LoginPage.name),
-                accountEmail: Text(LoginPage.email),
+                accountName: Text(LoginPage.name,style: TextStyle(color: context.theme.cardColor),),
+                accountEmail: Text(LoginPage.email,style: TextStyle(color: context.theme.cardColor),),
                 currentAccountPicture: const CircleAvatar(
                   backgroundImage: AssetImage("assets/images/profile.jpg"),
                 ),
@@ -39,14 +39,14 @@ class MyDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, MyRoutes.profileRoute);
               },
-              leading: const Icon(
+              leading: Icon(
                 CupertinoIcons.profile_circled,
-                color: Colors.white,
+                color: context.theme.focusColor,
               ),
-              title: const Text(
+              title: Text(
                 "P R O F I L E",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: context.theme.focusColor,
                   fontSize: 15,
                 ),
               ),
@@ -56,14 +56,14 @@ class MyDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, MyRoutes.settingRoute);
               },
-              leading: const Icon(
+              leading: Icon(
                 CupertinoIcons.settings,
-                color: Colors.white,
+                color: context.theme.focusColor,
               ),
-              title: const Text(
+              title: Text(
                 "S E T T I N G ",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: context.theme.focusColor,
                   fontSize: 15,
                 ),
               ),
@@ -72,14 +72,14 @@ class MyDrawer extends StatelessWidget {
               onTap: () {
                 print("EMAIL ME CLICKED");
               },
-              leading: const Icon(
+              leading: Icon(
                 Icons.mail,
-                color: Colors.white,
+                color: context.theme.focusColor,
               ),
-              title: const Text(
+              title: Text(
                 "E M A I L  M E",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: context.theme.focusColor,
                   fontSize: 15,
                 ),
               ),
