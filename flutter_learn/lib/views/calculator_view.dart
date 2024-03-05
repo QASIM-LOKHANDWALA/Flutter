@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class CalculatorView extends StatefulWidget {
-  const CalculatorView({super.key});
+  CalculatorView({super.key});
 
   @override
   State<CalculatorView> createState() => _CalculatorViewState();
@@ -13,6 +14,8 @@ class _CalculatorViewState extends State<CalculatorView> {
   num y = 0;
   num z = 0;
 
+  late AppLifecycleListener _listner;
+
   final displayOneController = TextEditingController();
   final displayTwoController = TextEditingController();
 
@@ -21,6 +24,34 @@ class _CalculatorViewState extends State<CalculatorView> {
     super.initState();
     displayOneController.text = x.toString();
     displayTwoController.text = y.toString();
+
+    _listner = AppLifecycleListener(
+      onShow: _onShow,
+      onHide: _onHide,
+      onDetach: _onDetach,
+      onResume: _onResume,
+      onInactive: _onInactive,
+      onPause: _onPause,
+      onRestart: _onRestart,
+      onStateChange: _onStateChange,
+    );
+  }
+
+  void _onShow() => print("onShow Called");
+  void _onHide() => print("onHide Called");
+  void _onDetach() => print("onDetach Called");
+  void _onResume() => print("onResume Called");
+  void _onInactive() => print("onInactive Called");
+  void _onPause() => print("onPause Called");
+  void _onRestart() => print("onRestart Called");
+  void _onStateChange(AppLifecycleState state) => print("onStateChange Called With State: ${state}");
+
+  @override
+  void dispose() {
+    super.dispose();
+    displayOneController.dispose();
+    displayTwoController.dispose();
+    _listner.dispose();
   }
 
   @override
@@ -29,29 +60,44 @@ class _CalculatorViewState extends State<CalculatorView> {
       padding: const EdgeInsets.all(32.0),
       child: Column(
         children: [
-          Display(hint: "Enter First Number",controller: displayOneController),
+          Display(
+            key: Key("TextField One"),
+            hint: "Enter First Number",
+            controller: displayOneController,
+          ),
           const SizedBox(
             height: 15,
           ),
-          Display(hint: "Enter Second Number",controller: displayTwoController,),
+          Display(
+            key: Key("TextField Two"),
+            hint: "Enter Second Number",
+            controller: displayTwoController,
+          ),
           const SizedBox(
             height: 15,
           ),
-          Text(z.toString(),style: const TextStyle(
-            fontSize: 60,
-            fontWeight: FontWeight.bold,
-          ),),
+          Text(
+            key: Key("Result"),
+            z.toString(),
+            style: const TextStyle(
+              fontSize: 50,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               FloatingActionButton(
-                  onPressed: (){
-                    setState(() {
-                      z = num.tryParse(displayOneController.text)!+num.tryParse(displayTwoController.text)!;
-                    });
-                  },
-                  child: const Icon(CupertinoIcons.add),
+                onPressed: (){
+                  setState(() {
+                    z = num.tryParse(displayOneController.text)!+num.tryParse(displayTwoController.text)!;
+                  });
+                },
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.amber.shade800,
+                shape: const StadiumBorder(),
+                child: const Icon(CupertinoIcons.add),
               ),
               FloatingActionButton(
                 onPressed: (){
@@ -59,6 +105,9 @@ class _CalculatorViewState extends State<CalculatorView> {
                     z = num.tryParse(displayOneController.text)!-num.tryParse(displayTwoController.text)!;
                   });
                 },
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.amber.shade800,
+                shape: const StadiumBorder(),
                 child: const Icon(CupertinoIcons.minus),
               ),
               FloatingActionButton(
@@ -67,6 +116,9 @@ class _CalculatorViewState extends State<CalculatorView> {
                     z = num.tryParse(displayOneController.text)!*num.tryParse(displayTwoController.text)!;
                   });
                 },
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.amber.shade800,
+                shape: const StadiumBorder(),
                 child: const Icon(CupertinoIcons.multiply),
               ),
               FloatingActionButton(
@@ -75,6 +127,9 @@ class _CalculatorViewState extends State<CalculatorView> {
                     z = num.tryParse(displayOneController.text)!/num.tryParse(displayTwoController.text)!;
                   });
                 },
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.amber.shade800,
+                shape: const StadiumBorder(),
                 child: const Icon(CupertinoIcons.divide),
               ),
             ],
@@ -82,8 +137,8 @@ class _CalculatorViewState extends State<CalculatorView> {
           const SizedBox(
             height: 15,
           ),
-          FloatingActionButton.extended(
-            onPressed: (){
+          GestureDetector(
+            onTap: (){
               setState(() {
                 x = 0;
                 y = 0;
@@ -92,7 +147,22 @@ class _CalculatorViewState extends State<CalculatorView> {
                 displayTwoController.clear();
               });
             },
-            label: const Text("Clear"),
+            child: Card(
+              elevation: 5,
+              color: Colors.amber.shade900,
+              child: const Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20.0),
+                  child: Text(
+                    "Clear",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
         ],
       ),
@@ -124,10 +194,10 @@ class Display extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(10)
         ),
-        border: OutlineInputBorder(
-            borderSide: const BorderSide(
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
               width: 3.0,
-              color: Colors.black,
+              color: Colors.amber.shade700,
             ),
           borderRadius: BorderRadius.circular(10),
         ),
