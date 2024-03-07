@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class TopBackgroundWidget extends StatelessWidget {
   const TopBackgroundWidget({super.key});
@@ -10,9 +11,9 @@ class TopBackgroundWidget extends StatelessWidget {
       child: Container(
         height: 300,
         width: 1000,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.yellow,
+          color: context.theme.colorScheme.primary,
         ),
       ),
     );

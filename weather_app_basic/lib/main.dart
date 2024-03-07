@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:weather_app_basic/my_theme.dart';
 import 'package:weather_app_basic/screens/home_screen.dart';
 
 import 'bloc/bloc_weather_bloc.dart';
@@ -16,8 +17,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: MyTheme.lightTheme(),
+      darkTheme: MyTheme.darkTheme(),
+      themeMode: ThemeMode.system,
       home: FutureBuilder(
-
         future: _determinePosition(),
         builder: (context,snap) {
           if(snap.hasData){

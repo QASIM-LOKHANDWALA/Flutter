@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'package:weather_app_basic/bloc/bloc_weather_bloc.dart';
 import 'package:weather_app_basic/widgets/middle_background/middle_background_widget_1.dart';
 import 'package:weather_app_basic/widgets/middle_background/middle_background_widget_2.dart';
@@ -20,13 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: context.theme.colorScheme.background,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarBrightness: Brightness.dark,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarBrightness: context.theme.colorScheme.brightness,
         ),
       ),
       body: Padding(
@@ -100,18 +101,18 @@ class MainContent extends StatelessWidget {
               children: [
                 Text(
                   '📍 ${state.weather.areaName}',
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: context.theme.focusColor,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 const SizedBox(
                   height: 8,
                 ),
-                const Text(
+                Text(
                   'WELCOME',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: context.theme.focusColor,
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
@@ -120,8 +121,8 @@ class MainContent extends StatelessWidget {
                 Center(
                   child: Text(
                     "${state.weather.temperature!.celsius!.round()}°C",
-                    style: const TextStyle(
-                        color: Colors.white,
+                    style: TextStyle(
+                        color: context.theme.focusColor,
                         fontSize: 55,
                         fontWeight: FontWeight.w600),
                   ),
@@ -129,8 +130,8 @@ class MainContent extends StatelessWidget {
                 Center(
                   child: Text(
                     state.weather.weatherMain!.toUpperCase(),
-                    style: const TextStyle(
-                        color: Colors.white,
+                    style: TextStyle(
+                        color: context.theme.focusColor,
                         fontSize: 25,
                         fontWeight: FontWeight.w500),
                   ),
@@ -141,8 +142,8 @@ class MainContent extends StatelessWidget {
                 Center(
                   child: Text(
                     DateFormat('EEEE dd • ').add_jm().format(state.weather.date!),
-                    style: const TextStyle(
-                        color: Colors.white,
+                    style: TextStyle(
+                        color: context.theme.focusColor,
                         fontSize: 16,
                         fontWeight: FontWeight.w300),
                   ),
@@ -165,17 +166,17 @@ class MainContent extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               "Sunrise",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: context.theme.focusColor,
                                 fontWeight: FontWeight.w300,
                               ),
                             ),
                             Text(
-                              DateFormat().add_jm().format(state.weather.sunrise!),
-                              style: const TextStyle(
-                                color: Colors.white,
+                              DateFormat().add_jm().format(state.weather.sunset!),
+                              style: TextStyle(
+                                color: context.theme.focusColor,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -195,17 +196,17 @@ class MainContent extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              "Sunrset",
+                            Text(
+                              "Sunset",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: context.theme.focusColor,
                                 fontWeight: FontWeight.w300,
                               ),
                             ),
                             Text(
-                              DateFormat().add_jm().format(state.weather.sunset!),
-                              style: const TextStyle(
-                                color: Colors.white,
+                              DateFormat().add_jm().format(state.weather.sunrise!),
+                              style: TextStyle(
+                                color: context.theme.focusColor,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -215,10 +216,10 @@ class MainContent extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
                   child: Divider(
-                    color: Colors.grey,
+                    color: context.theme.colorScheme.surface,
                   ),
                 ),
                 Row(
@@ -236,17 +237,17 @@ class MainContent extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               "Temp Max",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: context.theme.focusColor,
                                 fontWeight: FontWeight.w300,
                               ),
                             ),
                             Text(
                               '${state.weather.tempMax!.celsius!.round().toString()} °C',
-                              style: const TextStyle(
-                                color: Colors.white,
+                              style: TextStyle(
+                                color: context.theme.focusColor,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -266,17 +267,17 @@ class MainContent extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               "Temp Min",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: context.theme.focusColor,
                                 fontWeight: FontWeight.w300,
                               ),
                             ),
                             Text(
                               '${state.weather.tempMin!.celsius!.round().toString()} °C',
-                              style: const TextStyle(
-                                color: Colors.white,
+                              style: TextStyle(
+                                color: context.theme.focusColor,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -290,8 +291,8 @@ class MainContent extends StatelessWidget {
             ),
           );
         } else {
-          return Container(
-            
+          return const Center(
+            child: CircularProgressIndicator(),
           );
         }
       },

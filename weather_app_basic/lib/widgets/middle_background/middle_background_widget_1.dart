@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class Widget1 extends StatelessWidget {
   const Widget1({super.key});
@@ -12,7 +13,7 @@ class Widget1 extends StatelessWidget {
         width: 300,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.deepPurple.shade500,
+          color: context.theme.colorScheme.secondary,
         ),
       ),
     );
