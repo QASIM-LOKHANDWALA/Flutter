@@ -1,13 +1,17 @@
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:weather_app_basic/bloc/bloc_weather_bloc.dart';
 import 'package:weather_app_basic/widgets/middle_background/middle_background_widget_1.dart';
 import 'package:weather_app_basic/widgets/middle_background/middle_background_widget_2.dart';
 import 'package:weather_app_basic/widgets/top_background_color.dart';
+
+import '../theme_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,7 +21,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarBrightness: context.theme.colorScheme.brightness,
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: context.theme.colorScheme.primary,
+        child: Icon(CupertinoIcons.circle_lefthalf_fill,color: context.theme.focusColor,),
+        onPressed: () => Provider.of<ThemeProvider>(context,listen: false).toggleTheme(),
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(40, kTextTabBarHeight * 1.2, 40, 20),
@@ -60,22 +68,22 @@ class MainContent extends StatelessWidget {
   const MainContent({
     super.key,
   });
-  
-  String getWeatherIcon(int code){
-    switch(code){
-      case >=200 && <300:
+
+  String getWeatherIcon(int code) {
+    switch (code) {
+      case >= 200 && < 300:
         return "assets/1.png";
-      case >=300 && <400:
+      case >= 300 && < 400:
         return "assets/2.png";
-      case >=500 && <600:
+      case >= 500 && < 600:
         return "assets/3.png";
-      case >=600 && <700:
+      case >= 600 && < 700:
         return "assets/4.png";
-      case >=700 && <800:
+      case >= 700 && < 800:
         return "assets/5.png";
       case == 800:
         return "assets/6.png";
-      case >800 && <=804:
+      case > 800 && <= 804:
         return "assets/7.png";
       default:
         return "assets/7.png";
@@ -86,16 +94,10 @@ class MainContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WeatherBloc, WeatherBlocState>(
       builder: (context, state) {
-        if(state is WeatherBlocSuccess) {
+        if (state is WeatherBlocSuccess) {
           return SizedBox(
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -117,7 +119,8 @@ class MainContent extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Image.asset(getWeatherIcon(state.weather.weatherConditionCode!)),
+                Image.asset(
+                    getWeatherIcon(state.weather.weatherConditionCode!)),
                 Center(
                   child: Text(
                     "${state.weather.temperature!.celsius!.round()}°C",
@@ -141,7 +144,9 @@ class MainContent extends StatelessWidget {
                 ),
                 Center(
                   child: Text(
-                    DateFormat('EEEE dd • ').add_jm().format(state.weather.date!),
+                    DateFormat('EEEE dd • ')
+                        .add_jm()
+                        .format(state.weather.date!),
                     style: TextStyle(
                         color: context.theme.focusColor,
                         fontSize: 16,
@@ -174,7 +179,9 @@ class MainContent extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              DateFormat().add_jm().format(state.weather.sunset!),
+                              DateFormat()
+                                  .add_jm()
+                                  .format(state.weather.sunrise!),
                               style: TextStyle(
                                 color: context.theme.focusColor,
                                 fontWeight: FontWeight.w700,
@@ -204,7 +211,9 @@ class MainContent extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              DateFormat().add_jm().format(state.weather.sunrise!),
+                              DateFormat()
+                                  .add_jm()
+                                  .format(state.weather.sunset!),
                               style: TextStyle(
                                 color: context.theme.focusColor,
                                 fontWeight: FontWeight.w700,

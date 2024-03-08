@@ -112,7 +112,6 @@ class _HomePageState extends State<HomePage> {
             GestureDetector(
               onTap: (){
                 Provider.of<ThemeProvider>(context,listen: false).toggleTheme();
-
               },
               child: HomePage.themeIcon,
             ),
