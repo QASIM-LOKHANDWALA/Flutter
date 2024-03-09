@@ -11,6 +11,8 @@ import 'package:weather_app_basic/widgets/middle_background/middle_background_wi
 import 'package:weather_app_basic/widgets/middle_background/middle_background_widget_2.dart';
 import 'package:weather_app_basic/widgets/top_background_color.dart';
 
+import '../main.dart';
+import '../theme_cubit.dart';
 import '../theme_provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,46 +23,51 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.colorScheme.background,
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarBrightness: context.theme.colorScheme.brightness,
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: context.theme.colorScheme.primary,
-        child: Icon(CupertinoIcons.circle_lefthalf_fill,color: context.theme.focusColor,),
-        onPressed: () => Provider.of<ThemeProvider>(context,listen: false).toggleTheme(),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(40, kTextTabBarHeight * 1.2, 40, 20),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Stack(
-            children: [
-              const Widget1(),
-              const Widget2(),
-              const TopBackgroundWidget(),
-              BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                ),
-              ),
-              const MainContent(),
-            ],
+          backgroundColor: context.theme.colorScheme.background,
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarBrightness: context.theme.colorScheme.brightness,
+            ),
           ),
-        ),
-      ),
-    );
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: context.theme.colorScheme.primary,
+            child: Icon(
+              CupertinoIcons.circle_lefthalf_fill,
+              color: context.theme.focusColor,
+            ),
+            onPressed: () => MyApp.themeCubit.toggleTheme(),
+          ),
+          body: Padding(
+            padding:
+                const EdgeInsets.fromLTRB(40, kTextTabBarHeight * 1.2, 40, 20),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Stack(
+                children: [
+                  const Widget1(),
+                  const Widget2(),
+                  const TopBackgroundWidget(),
+                  BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                  ),
+                  const MainContent(),
+                ],
+              ),
+            ),
+          ),
+        );
   }
 }
 

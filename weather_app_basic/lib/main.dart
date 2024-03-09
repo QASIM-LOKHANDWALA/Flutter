@@ -4,41 +4,52 @@ import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app_basic/my_theme.dart';
 import 'package:weather_app_basic/screens/home_screen.dart';
+import 'package:weather_app_basic/theme_cubit.dart';
 import 'package:weather_app_basic/theme_provider.dart';
 
 import 'bloc/bloc_weather_bloc.dart';
 
 void main() {
   runApp(
-      ChangeNotifierProvider(create: (context) => ThemeProvider(),child: const MyApp(),)
+    const MyApp(),
+    //ChangeNotifierProvider(create: (context) => ThemeProvider(),child: const MyApp(),)
   );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  static final themeCubit = ThemeCubit();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: Provider.of<ThemeProvider>(context).themeData,
-      home: FutureBuilder(
-        future: _determinePosition(),
-        builder: (context,snap) {
-          if(snap.hasData){
-            return BlocProvider<WeatherBloc>(
-              create: (context) => WeatherBloc()..add(FetchWeather(snap.data as Position)),
-              child: const HomeScreen(),
-            );
-          } else {
-            return const Scaffold(
-              body: Center(
-                child: CircularProgressIndicator.adaptive(),
-              ),
-            );
-          }
-        },
-      ),
+    return BlocBuilder<ThemeCubit, ThemeData>(
+      bloc: themeCubit,
+      builder: (context, state) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: themeCubit.state,
+          home: FutureBuilder(
+            future: _determinePosition(),
+            builder: (context, snap) {
+              if (snap.hasData) {
+                return BlocProvider<WeatherBloc>(
+                  create: (context) =>
+                  WeatherBloc()
+                    ..add(FetchWeather(snap.data as Position)),
+                  child: const HomeScreen(),
+                );
+              } else {
+                return const Scaffold(
+                  body: Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  ),
+                );
+              }
+            },
+          ),
+        );
+      },
     );
   }
 }
