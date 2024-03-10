@@ -59,10 +59,16 @@ class MyApp extends StatelessWidget {
 Future<Position> _determinePosition() async {
   bool serviceEnabled;
   LocationPermission permission;
+  var connectivityResult = await Connectivity().checkConnectivity();
+  if (connectivityResult == ConnectivityResult.none) {
+    return Future.error("Please connect to the internet");
+  }
 
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
-    return Future.error("LOCATION SERVICE DISABLED");
+    // Open location settings
+    await launchUrl(Uri(scheme: 'geolocator', path: 'enableLocation'));
+    return Future.error("Please enable Location Services");
   }
 
   permission = await Geolocator.checkPermission();

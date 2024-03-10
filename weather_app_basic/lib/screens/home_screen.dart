@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   String backgroung(){
     if(context.isDarkMode){
-      return "assets/darkBG2.jpg";
+      return "assets/darkBG.jpg";
     }else{
       return "assets/lightBG2.jpg";
     }
@@ -53,28 +53,32 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             onPressed: () => MyApp.themeCubit.toggleTheme(),
           ),
-          body: Padding(
-            padding:
-                const EdgeInsets.fromLTRB(40, kTextTabBarHeight * 1.2, 40, 20),
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: Stack(
-                children: [
-                  // const Widget1(),
-                  // const Widget2(),
-                  // const TopBackgroundWidget(),
-                  Image.asset(backgroung(),fit: BoxFit.fill,),
-                  BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 90, sigmaY: 90),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.transparent,
-                      ),
+          body: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Stack(
+              children: [
+                // const Widget1(),
+                // const Widget2(),
+                // const TopBackgroundWidget(),
+                Positioned.fill(
+                  child: Image.asset(
+                    backgroung(),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.transparent,
                     ),
                   ),
-                  const MainContent(),
-                ],
-              ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(40, kTextTabBarHeight * 1.2, 40, 20),
+                  child: MainContent(),
+                ),
+              ],
             ),
           ),
         );
