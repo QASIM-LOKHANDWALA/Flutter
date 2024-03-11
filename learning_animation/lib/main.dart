@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_animation/implicit_animation/animated_shopping_cart_button.dart';
 
 import 'implicit_animation/animated_color_pallete.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const AnimatedColorPalette(),
+      home: const ShoppingCartButton(),
     );
   }
 }
