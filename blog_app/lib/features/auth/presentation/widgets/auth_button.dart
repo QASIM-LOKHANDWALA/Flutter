@@ -1,9 +1,9 @@
 import 'package:blog_app/core/theme/AppPallete.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 class AuthButton extends StatelessWidget {
-  const AuthButton({super.key});
+  final String text;
+  const AuthButton({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,14 @@ class AuthButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
+          surfaceTintColor: AppPallete.transparentColor,
           backgroundColor: AppPallete.transparentColor,
           shadowColor: AppPallete.transparentColor,
           fixedSize: const Size(395, 55),
         ),
-        child: const Text(
-          'Sign Up',
-          style: TextStyle(
+        child: Text(
+          text,
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 17,
             fontWeight: FontWeight.w600,
