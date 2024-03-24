@@ -2,8 +2,9 @@ import 'package:blog_app/core/theme/AppPallete.dart';
 import 'package:flutter/material.dart';
 
 class AuthButton extends StatelessWidget {
+  final VoidCallback onPressed;
   final String text;
-  const AuthButton({super.key, required this.text});
+  const AuthButton({super.key, required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
