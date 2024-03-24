@@ -1,5 +1,4 @@
 import 'package:blog_app/core/secrets/app_secret.dart';
-import 'package:blog_app/core/secrets/auth_secrets.dart';
 import 'package:blog_app/core/theme/theme.dart';
 import 'package:blog_app/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:blog_app/features/auth/data/repository/auth_repository_impl.dart';
