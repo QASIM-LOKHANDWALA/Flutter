@@ -2,36 +2,39 @@ import 'package:blog_app/core/theme/AppPallete.dart';
 import 'package:flutter/material.dart';
 
 class AuthButton extends StatelessWidget {
+  final String buttonText;
   final VoidCallback onPressed;
-  final String text;
-  const AuthButton({super.key, required this.text, required this.onPressed});
+  const AuthButton({
+    super.key,
+    required this.buttonText,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
         gradient: const LinearGradient(
           colors: [
             AppPallete.gradient1,
             AppPallete.gradient2,
+            // AppPallete.gradient3,
           ],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         ),
+        borderRadius: BorderRadius.circular(7),
       ),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          surfaceTintColor: AppPallete.transparentColor,
+          fixedSize: const Size(395, 55),
           backgroundColor: AppPallete.transparentColor,
           shadowColor: AppPallete.transparentColor,
-          fixedSize: const Size(395, 55),
         ),
         child: Text(
-          text,
+          buttonText,
           style: const TextStyle(
-            color: Colors.white,
             fontSize: 17,
             fontWeight: FontWeight.w600,
           ),

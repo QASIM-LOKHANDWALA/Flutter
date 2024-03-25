@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                   const Padding(
                     padding: EdgeInsets.only(top: 150.0),
                     child: Text(
-                      "Sign Up.",
+                      "Sign In.",
                       style: TextStyle(
                         fontSize: 50,
                         fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 15,
                   ),
-                  AuthButton(text:'Sign In',onPressed: (){},),
+                  AuthButton(buttonText:'Sign In',onPressed: (){},),
                   const SizedBox(
                     height: 20,
                   ),
