@@ -19,9 +19,19 @@ class AuthRDS implements AuthRemoteDataSource {
   AuthRDS(this.supabaseClient);
   @override
   Future<UserModel> loginWithEmailPassword(
-      {required String email, required String password}) {
-    // TODO: implement loginWithEmailPassword
-    throw UnimplementedError();
+      {required String email, required String password}) async {
+    try {
+      final response = await supabaseClient.auth.signInWithPassword(
+        password: password,
+        email: email,
+      );
+      if (response.user == null) {
+        throw const ServerException('User is null');
+      }
+      return UserModel.fromJsom(response.user!.toJson());
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
   }
 
   @override
@@ -37,7 +47,7 @@ class AuthRDS implements AuthRemoteDataSource {
           'name': name,
         },
       );
-      if(response.user == null){
+      if (response.user == null) {
         throw const ServerException('User is null');
       }
       return UserModel.fromJsom(response.user!.toJson());
