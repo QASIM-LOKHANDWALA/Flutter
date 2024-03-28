@@ -8,4 +8,10 @@ class User {
     required this.email,
     required this.name,
   });
+
+  User copyWith({
+    String? id,String? email,String? name,
+  }) {
+    return User(id: id ?? this.id, email: email ?? this.email, name: name ?? this.name,)
+  }
 }
