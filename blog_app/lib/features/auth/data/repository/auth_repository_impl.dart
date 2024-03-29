@@ -4,7 +4,7 @@ import 'package:blog_app/features/auth/data/datasources/auth_remote_data_source.
 import 'package:blog_app/features/auth/domain/repository/auth_repository.dart';
 import 'package:fpdart/src/either.dart';
 
-import '../../domain/entities/user.dart';
+import '../../../../core/common/entities/user.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
