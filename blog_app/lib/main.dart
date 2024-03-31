@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'features/blog/presentation/pages/blog_page.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await intiDependencies();
@@ -50,11 +52,7 @@ class _MyAppState extends State<MyApp> {
         },
         builder: (context, isLoggedIn) {
           if (isLoggedIn) {
-            return const Scaffold(
-              body: Center(
-                child: Text("Hello"),
-              ),
-            );
+            return const BlogPage();
           }
           return const LoginPage();
         },
