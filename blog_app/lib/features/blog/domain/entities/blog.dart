@@ -1,5 +1,3 @@
-import '../../domain/entities/blog.dart';
-
 class Blog {
   final String id;
   final String posterId;

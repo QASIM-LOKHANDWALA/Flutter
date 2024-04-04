@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class BlogEditor extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
-  const BlogEditor({super.key,required this.controller,required this.hintText});
+  const BlogEditor(
+      {super.key, required this.controller, required this.hintText});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,12 @@ class BlogEditor extends StatelessWidget {
         hintText: hintText,
       ),
       maxLines: null,
+      validator: (value) {
+        if (value!.trim().isEmpty) {
+          return '$hintText is missing';
+        }
+        return null;
+      },
     );
   }
 }
